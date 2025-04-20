@@ -2,7 +2,8 @@ import os
 import sys
 import getpass
 
-rootdir = "/" # Include path to repo
+rootdir = "/home/zhangxinmiao/prim-benchmarks" # Include path to repo
+graph_data = "/home/zhangxinmiao/prim-benchmarks/BFS/data/loc-gowalla_edges.txt"
 
 applications = {"VA"       : ["NR_DPUS=X NR_TASKLETS=Y BL=Z make all", "./bin/host_code -w 0 -e 1 -i #elements -x 0"],
                 "GEMV"     : ["NR_DPUS=X NR_TASKLETS=Y BL=Z make all", "./bin/gemv_host -m #elements -n 2048"],
@@ -108,13 +109,13 @@ def run(app_name):
                                 # Generate rMat graphs using:
                                 # https://github.com/cmuparlay/pbbsbench/blob/master/testData/graphData/rMatGraph.html
                                 # https://github.com/cmuparlay/pbbsbench/blob/master/testData/graphData/rMatGraph.C
-                                r_cmd = run_cmd.replace("file_name", "/") # Include path to input file - rMat graph
+                                r_cmd = run_cmd.replace("file_name", graph_data) # Include path to input file - rMat graph
                             if(r == 4):
-                                r_cmd = run_cmd.replace("file_name", "/") # Include path to input file - rMat graph
+                                r_cmd = run_cmd.replace("file_name", graph_data) # Include path to input file - rMat graph
                             if(r == 16):
-                                r_cmd = run_cmd.replace("file_name", "/") # Include path to input file - rMat graph
+                                r_cmd = run_cmd.replace("file_name", graph_data) # Include path to input file - rMat graph
                             if(r == 64):
-                                r_cmd = run_cmd.replace("file_name", "/") # Include path to input file - rMat graph
+                                r_cmd = run_cmd.replace("file_name", graph_data) # Include path to input file - rMat graph
                         if(app_name == "SpMV"):
                             if(r == 1):
                                 r_cmd = run_cmd.replace("file_name", "/") # Include path to input file - Check SpMV/data/generate

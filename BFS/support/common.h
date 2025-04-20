@@ -5,8 +5,16 @@
 #define ROUND_UP_TO_MULTIPLE_OF_8(x)    ((((x) + 7)/8)*8)
 #define ROUND_UP_TO_MULTIPLE_OF_64(x)   ((((x) + 63)/64)*64)
 
-#define setBit(val, idx) (val) |= (1 << (idx))
-#define isSet(val, idx)  ((val) & (1 << (idx)))
+#define setBitF(val, idx) (val) |= (1 << (idx))
+#define isSetF(val, idx)  ((val) & (1 << (idx)))
+
+static inline void setBit(uint64_t* vec, int idx) {
+    vec[idx / 64] |= (1ULL << (idx % 64));
+}
+
+static inline int isSet(const uint64_t* bitvec, uint64_t index) {
+    return (bitvec[index / 64] >> (index % 64)) & 1ULL;
+}
 
 struct DPUParams {
     uint32_t dpuNumNodes; /* The number of nodes assigned to this DPU */

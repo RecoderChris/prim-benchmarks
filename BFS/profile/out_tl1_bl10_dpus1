@@ -1,0 +1,4 @@
+CPU-DPU Time(ms): 11.496000    
+DPU Kernel Time (ms): 4989.173889    
+Inter-DPU Time (ms): 1.004000    
+DPU-CPU Time (ms): 1.102000

@@ -21,7 +21,6 @@ MUTEX_INIT(nextFrontierMutex);
 
 // main
 int main() {
-
     if(me() == 0) {
         mem_reset(); // Reset the heap
     }
@@ -60,6 +59,8 @@ int main() {
 
         // Allocate WRAM cache for each tasklet to use throughout
         uint64_t* cache_w = mem_alloc(sizeof(uint64_t));
+        // uint64_t nextFrontierA = load8B(nextFrontier_m, 0, cache_w);
+        // printf("curr front = %lx\n", nextFrontierA);
 
         // Update current frontier and visited list based on the next frontier from the previous iteration
         for(uint32_t nodeTileIdx = me(); nodeTileIdx < numGlobalNodes/64; nodeTileIdx += NR_TASKLETS) {
@@ -91,13 +92,12 @@ int main() {
                 // Update node levels
                 if(nextFrontierTile) {
                     for(uint32_t node = nodeTileIdx*64; node < (nodeTileIdx + 1)*64; ++node) {
-                        if(isSet(nextFrontierTile, node%64)) {
+                        if(isSet(&nextFrontierTile, node%64)) {
                             store4B(level, nodeLevel_m, node - startNodeIdx, cache_w); // No false sharing so no need for locks
                         }
                     }
                 }
             }
-
         }
 
         // Wait until all tasklets have updated the current frontier
@@ -120,7 +120,7 @@ int main() {
         for(uint32_t node = taskletNodesStart; node < taskletNodesStart + taskletNumNodes; ++node) {
             uint32_t nodeTileIdx = node/64;
             uint64_t currentFrontierTile = load8B(currentFrontier_m, nodeTileIdx, cache_w); // TODO: Optimize: load tile then loop over nodes in the tile
-            if(isSet(currentFrontierTile, node%64)) { // If the node is in the current frontier
+            if(isSet(&currentFrontierTile, node%64)) { // If the node is in the current frontier
                 // Visit its neighbors
                 uint32_t nodePtr = load4B(nodePtrs_m, node, cache_w) - nodePtrsOffset;
                 uint32_t nextNodePtr = load4B(nodePtrs_m, node + 1, cache_w) - nodePtrsOffset; // TODO: Optimize: might be in the same 8B as nodePtr
@@ -128,11 +128,11 @@ int main() {
                     uint32_t neighbor = load4B(neighborIdxs_m, i, cache_w); // TODO: Optimize: sequential access to neighbors can use sequential reader
                     uint32_t neighborTileIdx = neighbor/64;
                     uint64_t visitedTile = load8B(visited_m, neighborTileIdx, cache_w);
-                    if(!isSet(visitedTile, neighbor%64)) { // Neighbor not previously visited
+                    if(!isSet(&visitedTile, neighbor%64)) { // Neighbor not previously visited
                         // Add neighbor to next frontier
                         mutex_lock(mutexID); // TODO: Optimize: use more locks to reduce contention
                         uint64_t nextFrontierTile = load8B(nextFrontier_m, neighborTileIdx, cache_w);
-                        setBit(nextFrontierTile, neighbor%64);
+                        setBit(&nextFrontierTile, neighbor%64);
                         store8B(nextFrontierTile, nextFrontier_m, neighborTileIdx, cache_w);
                         mutex_unlock(mutexID);
                     }
