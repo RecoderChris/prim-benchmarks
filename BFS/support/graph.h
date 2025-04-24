@@ -23,41 +23,41 @@ struct CSRGraph {
 };
 
 static struct COOGraph readCOOGraph(const char* fileName) {
-
     struct COOGraph cooGraph;
-
-    // Initialize fields
+    cooGraph.numNodes = 0;
+    cooGraph.numEdges = 0;
+    
+    // first scan
     FILE* fp = fopen(fileName, "r");
-    uint32_t numNodes, numCols;
-    assert(fscanf(fp, "%u", &numNodes));
-    assert(fscanf(fp, "%u", &numCols));
-    if(numNodes == numCols) {
-        cooGraph.numNodes = numNodes;
-    } else {
-        PRINT_WARNING("    Adjacency matrix is not square. Padding matrix to be square.");
-        cooGraph.numNodes = (numNodes > numCols)? numNodes : numCols;
+    uint32_t vid;
+    while(fscanf(fp, "%u", &vid) > 0){
+        if(vid >= cooGraph.numNodes)
+            cooGraph.numNodes = vid + 1;
+        assert(fscanf(fp, "%u", &vid));
+        if(vid >= cooGraph.numNodes)
+            cooGraph.numNodes = vid + 1;
+        cooGraph.numEdges++;
     }
-    if(cooGraph.numNodes%64 != 0) {
-        PRINT_WARNING("    Adjacency matrix dimension is %u which is not a multiple of 64 nodes.", cooGraph.numNodes);
+    fclose(fp);
+    if(cooGraph.numNodes%64 != 0) { // TODO
         cooGraph.numNodes += (64 - cooGraph.numNodes%64);
-        PRINT_WARNING("        Padding to %u which is a multiple of 64 nodes.", cooGraph.numNodes);
+        PRINT_WARNING("Padding vertices to %u (multiple of 64)", cooGraph.numNodes);
     }
-    assert(fscanf(fp, "%u", &cooGraph.numEdges));
     cooGraph.nodeIdxs = (uint32_t*) malloc(cooGraph.numEdges*sizeof(uint32_t));
     cooGraph.neighborIdxs = (uint32_t*) malloc(cooGraph.numEdges*sizeof(uint32_t));
 
-    // Read the neighborIdxs
-    for(uint32_t edgeIdx = 0; edgeIdx < cooGraph.numEdges; ++edgeIdx) {
-        uint32_t nodeIdx;
-        assert(fscanf(fp, "%u", &nodeIdx));
-        cooGraph.nodeIdxs[edgeIdx] = nodeIdx;
-        uint32_t neighborIdx;
-        assert(fscanf(fp, "%u", &neighborIdx));
-        cooGraph.neighborIdxs[edgeIdx] = neighborIdx;
+    // second scan
+    fp = fopen(fileName, "r");
+    uint32_t src, dst;
+    uint32_t cnt = 0;
+    while(fscanf(fp, "%u", &src) > 0){
+        cooGraph.nodeIdxs[cnt] = src;
+        assert(fscanf(fp, "%u", &dst));
+        cooGraph.neighborIdxs[cnt] = dst;
+        cnt++;
     }
-
+    fclose(fp);
     return cooGraph;
-
 }
 
 static void freeCOOGraph(struct COOGraph cooGraph) {
