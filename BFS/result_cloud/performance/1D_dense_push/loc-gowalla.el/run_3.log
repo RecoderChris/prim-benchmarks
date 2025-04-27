@@ -1,25 +1,25 @@
-[0;32mINFO:[0m    Allocated 64 DPU(s)
-[0;32mINFO:[0m    Reading graph /mnt/data_nvme_2/zhangxinmiao/graph_data2/loc-gowalla.el
+[0;32mINFO:[0m    Allocated 256 DPU(s)
+[0;32mINFO:[0m    Reading graph /home/upmem0086/zxinmiao/loc-gowalla.el
 [0;32mINFO:[0m        Graph has 196608 nodes and 1900654 edges
-max edge = 261250
-[0;32mINFO:[0m    [CPU->DPU]: 44.045992 ms, load size = 11MB
-[0;32mINFO:[0m    Level(1): front size = 615 | DPU Kernel Time = 35.31 ms | Host Time = 13.38ms
-[0;32mINFO:[0m    Level(2): front size = 45423 | DPU Kernel Time = 266.29 ms | Host Time = 14.53ms
-[0;32mINFO:[0m    Level(3): front size = 94506 | DPU Kernel Time = 848.56 ms | Host Time = 17.00ms
-[0;32mINFO:[0m    Level(4): front size = 45194 | DPU Kernel Time = 131.58 ms | Host Time = 13.62ms
-[0;32mINFO:[0m    Level(5): front size = 9300 | DPU Kernel Time = 49.13 ms | Host Time = 13.79ms
-[0;32mINFO:[0m    Level(6): front size = 1301 | DPU Kernel Time = 36.02 ms | Host Time = 13.14ms
-[0;32mINFO:[0m    Level(7): front size = 197 | DPU Kernel Time = 39.75 ms | Host Time = 13.23ms
-[0;32mINFO:[0m    Level(8): front size = 48 | DPU Kernel Time = 24.97 ms | Host Time = 13.82ms
-[0;32mINFO:[0m    Level(9): front size = 6 | DPU Kernel Time = 24.31 ms | Host Time = 15.01ms
-[0;32mINFO:[0m    Level(9): front size = 0 | DPU Kernel Time = 23.58 ms | Host Time = 6.03ms
-[0;32mINFO:[0m    DPU->HOST Time: 11.174000 ms
+max edge = 116067
+[0;32mINFO:[0m    [CPU->DPU]: 125.063032 ms, load size = 20MB
+[0;32mINFO:[0m    Level(1): front size = 615 | DPU Kernel Time = 1.69 ms | Host Time = 99.58ms
+[0;32mINFO:[0m    Level(2): front size = 45423 | DPU Kernel Time = 60.47 ms | Host Time = 94.41ms
+[0;32mINFO:[0m    Level(3): front size = 94506 | DPU Kernel Time = 23.42 ms | Host Time = 95.86ms
+[0;32mINFO:[0m    Level(4): front size = 45194 | DPU Kernel Time = 7.09 ms | Host Time = 95.88ms
+[0;32mINFO:[0m    Level(5): front size = 9300 | DPU Kernel Time = 3.07 ms | Host Time = 92.99ms
+[0;32mINFO:[0m    Level(6): front size = 1301 | DPU Kernel Time = 1.34 ms | Host Time = 90.94ms
+[0;32mINFO:[0m    Level(7): front size = 197 | DPU Kernel Time = 1.09 ms | Host Time = 93.69ms
+[0;32mINFO:[0m    Level(8): front size = 48 | DPU Kernel Time = 0.84 ms | Host Time = 93.79ms
+[0;32mINFO:[0m    Level(9): front size = 6 | DPU Kernel Time = 0.75 ms | Host Time = 98.35ms
+[0;32mINFO:[0m    Level(9): front size = 0 | DPU Kernel Time = 0.67 ms | Host Time = 54.59ms
+[0;32mINFO:[0m    DPU->HOST Time: 21.747001 ms
 ==========
 SUMMARY
-CPU->DPU Time(ms):   44.045992
-DPU Kernel Time(ms): 1479.494214
-DPU<->CPU Time(ms):  133.541986
-DPU->HOST Time(ms):  11.174000
+CPU->DPU Time(ms):   125.063032
+DPU Kernel Time(ms): 100.445010
+DPU<->CPU Time(ms):  910.077035
+DPU->HOST Time(ms):  21.747001
 
 ==========
 [0;32mINFO:[0m    Calculating result on CPU

@@ -1,22 +1,22 @@
-[0;32mINFO:[0m    Allocated 64 DPU(s)
-[0;32mINFO:[0m    Reading graph /mnt/data_nvme_2/zhangxinmiao/graph_data2/R18-16.el
+[0;32mINFO:[0m    Allocated 256 DPU(s)
+[0;32mINFO:[0m    Reading graph /home/upmem0086/zxinmiao/R18-16.el
 [0;32mINFO:[0m        Graph has 262144 nodes and 4194304 edges
-max edge = 66252
-[0;32mINFO:[0m    [CPU->DPU]: 63.042991 ms, load size = 22MB
-[0;32mINFO:[0m    Level(1): front size = 17 | DPU Kernel Time = 35.32 ms | Host Time = 14.70ms
-[0;32mINFO:[0m    Level(2): front size = 279 | DPU Kernel Time = 26.79 ms | Host Time = 14.87ms
-[0;32mINFO:[0m    Level(3): front size = 4544 | DPU Kernel Time = 26.35 ms | Host Time = 13.37ms
-[0;32mINFO:[0m    Level(4): front size = 62220 | DPU Kernel Time = 42.66 ms | Host Time = 12.88ms
-[0;32mINFO:[0m    Level(5): front size = 190707 | DPU Kernel Time = 135.27 ms | Host Time = 14.37ms
-[0;32mINFO:[0m    Level(6): front size = 4376 | DPU Kernel Time = 247.36 ms | Host Time = 13.07ms
-[0;32mINFO:[0m    Level(6): front size = 0 | DPU Kernel Time = 39.05 ms | Host Time = 5.77ms
-[0;32mINFO:[0m    DPU->HOST Time: 12.900000 ms
+max edge = 16762
+[0;32mINFO:[0m    [CPU->DPU]: 170.204118 ms, load size = 34MB
+[0;32mINFO:[0m    Level(1): front size = 17 | DPU Kernel Time = 0.86 ms | Host Time = 118.36ms
+[0;32mINFO:[0m    Level(2): front size = 279 | DPU Kernel Time = 0.88 ms | Host Time = 115.60ms
+[0;32mINFO:[0m    Level(3): front size = 4544 | DPU Kernel Time = 0.97 ms | Host Time = 113.40ms
+[0;32mINFO:[0m    Level(4): front size = 62220 | DPU Kernel Time = 2.03 ms | Host Time = 112.08ms
+[0;32mINFO:[0m    Level(5): front size = 190707 | DPU Kernel Time = 4.49 ms | Host Time = 111.42ms
+[0;32mINFO:[0m    Level(6): front size = 4376 | DPU Kernel Time = 5.65 ms | Host Time = 111.19ms
+[0;32mINFO:[0m    Level(6): front size = 0 | DPU Kernel Time = 1.85 ms | Host Time = 64.70ms
+[0;32mINFO:[0m    DPU->HOST Time: 22.760000 ms
 ==========
 SUMMARY
-CPU->DPU Time(ms):   63.042991
-DPU Kernel Time(ms): 552.807987
-DPU<->CPU Time(ms):  89.032002
-DPU->HOST Time(ms):  12.900000
+CPU->DPU Time(ms):   170.204118
+DPU Kernel Time(ms): 16.734000
+DPU<->CPU Time(ms):  746.749997
+DPU->HOST Time(ms):  22.760000
 
 ==========
 [0;32mINFO:[0m    Calculating result on CPU
