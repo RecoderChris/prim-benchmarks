@@ -75,6 +75,7 @@ int main(int argc, char** argv) {
     struct DPUParams dpuParams[numDPUs];
     uint32_t dpuParams_m[numDPUs];
     unsigned int dpuIdx = 0;
+    uint32_t max_edge = 0;
     DPU_FOREACH (dpu_set, dpu) {
         // Allocate parameters
         struct mram_heap_allocator_t allocator;
@@ -103,7 +104,9 @@ int main(int argc, char** argv) {
             uint32_t* dpuNeighborIdxs_h = neighborIdxs + dpuNodePtrsOffset;
             uint32_t dpuNumNeighbors = dpuNodePtrs_h[dpuNumNodes] - dpuNodePtrsOffset;
             uint32_t* dpuNodeLevel_h = &nodeLevel[dpuStartNodeIdx];
-            printf("partition[%u]: numEdges = %u\n", dpuIdx, dpuNumNeighbors);
+            if(dpuNumNeighbors > max_edge)
+                max_edge = dpuNumNeighbors;
+            // printf("partition[%u]: numEdges = %u\n", dpuIdx, dpuNumNeighbors);
             // Allocate MRAM
             uint32_t dpuNodePtrs_m = mram_heap_alloc(&allocator, (dpuNumNodes + 1)*sizeof(uint32_t));
             uint32_t dpuNeighborIdxs_m = mram_heap_alloc(&allocator, dpuNumNeighbors*sizeof(uint32_t));
@@ -151,6 +154,7 @@ int main(int argc, char** argv) {
         loadTime += getElapsedTime(timer);
         ++dpuIdx;
     }
+    printf("max edge = %u\n", max_edge);
     PRINT_INFO(p.verbosity >= 1, "[CPU->DPU]: %f ms, load size = %lldMB", loadTime*1e3, loadSize / 1024 / 1024);
     // PRINT_INFO(p.verbosity >= 2, "    CPU-DPU Time: %f ms", loadTime*1e3);
 

@@ -1,0 +1,23 @@
+[0;32mINFO:[0m    Allocated 64 DPU(s)
+[0;32mINFO:[0m    Reading graph /mnt/data_nvme_2/zhangxinmiao/graph_data2/R18-16.el
+[0;32mINFO:[0m        Graph has 262144 nodes and 4194304 edges
+max edge = 66252
+[0;32mINFO:[0m    [CPU->DPU]: 60.130004 ms, load size = 22MB
+[0;32mINFO:[0m    Level(1): front size = 17 | DPU Kernel Time = 39.32 ms | Host Time = 16.26ms
+[0;32mINFO:[0m    Level(2): front size = 279 | DPU Kernel Time = 29.61 ms | Host Time = 15.49ms
+[0;32mINFO:[0m    Level(3): front size = 4544 | DPU Kernel Time = 26.13 ms | Host Time = 14.72ms
+[0;32mINFO:[0m    Level(4): front size = 62220 | DPU Kernel Time = 56.25 ms | Host Time = 13.79ms
+[0;32mINFO:[0m    Level(5): front size = 190707 | DPU Kernel Time = 179.63 ms | Host Time = 14.73ms
+[0;32mINFO:[0m    Level(6): front size = 4376 | DPU Kernel Time = 328.66 ms | Host Time = 14.88ms
+[0;32mINFO:[0m    Level(6): front size = 0 | DPU Kernel Time = 50.78 ms | Host Time = 5.39ms
+[0;32mINFO:[0m    DPU->HOST Time: 12.165000 ms
+==========
+SUMMARY
+CPU->DPU Time(ms):   60.130004
+DPU Kernel Time(ms): 710.371971
+DPU<->CPU Time(ms):  95.266998
+DPU->HOST Time(ms):  12.165000
+
+==========
+[0;32mINFO:[0m    Calculating result on CPU
+[0;32mINFO:[0m    Verifying the result

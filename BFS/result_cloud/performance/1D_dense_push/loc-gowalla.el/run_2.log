@@ -1,0 +1,26 @@
+[0;32mINFO:[0m    Allocated 64 DPU(s)
+[0;32mINFO:[0m    Reading graph /mnt/data_nvme_2/zhangxinmiao/graph_data2/loc-gowalla.el
+[0;32mINFO:[0m        Graph has 196608 nodes and 1900654 edges
+max edge = 261250
+[0;32mINFO:[0m    [CPU->DPU]: 53.003006 ms, load size = 11MB
+[0;32mINFO:[0m    Level(1): front size = 615 | DPU Kernel Time = 30.44 ms | Host Time = 17.02ms
+[0;32mINFO:[0m    Level(2): front size = 45423 | DPU Kernel Time = 259.35 ms | Host Time = 19.66ms
+[0;32mINFO:[0m    Level(3): front size = 94506 | DPU Kernel Time = 754.95 ms | Host Time = 21.71ms
+[0;32mINFO:[0m    Level(4): front size = 45194 | DPU Kernel Time = 135.99 ms | Host Time = 18.98ms
+[0;32mINFO:[0m    Level(5): front size = 9300 | DPU Kernel Time = 46.82 ms | Host Time = 16.64ms
+[0;32mINFO:[0m    Level(6): front size = 1301 | DPU Kernel Time = 40.19 ms | Host Time = 17.84ms
+[0;32mINFO:[0m    Level(7): front size = 197 | DPU Kernel Time = 35.22 ms | Host Time = 17.54ms
+[0;32mINFO:[0m    Level(8): front size = 48 | DPU Kernel Time = 19.72 ms | Host Time = 16.79ms
+[0;32mINFO:[0m    Level(9): front size = 6 | DPU Kernel Time = 19.15 ms | Host Time = 18.94ms
+[0;32mINFO:[0m    Level(9): front size = 0 | DPU Kernel Time = 20.03 ms | Host Time = 6.42ms
+[0;32mINFO:[0m    DPU->HOST Time: 12.308000 ms
+==========
+SUMMARY
+CPU->DPU Time(ms):   53.003006
+DPU Kernel Time(ms): 1361.847043
+DPU<->CPU Time(ms):  171.535000
+DPU->HOST Time(ms):  12.308000
+
+==========
+[0;32mINFO:[0m    Calculating result on CPU
+[0;32mINFO:[0m    Verifying the result
